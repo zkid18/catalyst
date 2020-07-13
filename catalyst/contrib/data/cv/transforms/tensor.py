@@ -2,8 +2,7 @@
 # @TODO: code formatting issue for 20.07 release
 import numpy as np
 
-from albumentations import ImageOnlyTransform
-from albumentations.pytorch import ToTensorV2
+from albumentations import BasicTransform, ImageOnlyTransform
 import torch
 
 from catalyst import utils
@@ -44,7 +43,7 @@ class TensorToImage(ImageOnlyTransform):
         )
 
 
-class ToTensor(ToTensorV2):
+class ToTensor(BasicTransform):
     """Casts ``numpy.array`` to ``torch.tensor``."""
 
     def __init__(
@@ -63,17 +62,21 @@ class ToTensor(ToTensorV2):
         super().__init__(always_apply, p)
         self.move_channels_dim = move_channels_dim
 
+    @property
+    def targets(self):
+        return {"image": self.apply, "mask": self.apply_to_mask}
+
     def apply(self, img: np.ndarray, **params) -> torch.Tensor:
         """Apply the transform to the image."""
         if self.move_channels_dim:
-            return super().apply(img, **params)
+            img = img.transpose(2, 0, 1)
         return torch.from_numpy(img)
 
     def apply_to_mask(self, mask: np.ndarray, **params) -> torch.Tensor:
         """Apply the transform to the mask."""
         if self.move_channels_dim:
             mask = mask.transpose(2, 0, 1)
-        return super().apply_to_mask(mask.astype(np.float32), **params)
+        return torch.from_numpy(mask.astype(np.float32), **params)
 
     def get_transform_init_args_names(self) -> tuple:
         """@TODO: Docs. Contribution is welcome."""

@@ -8,7 +8,7 @@ set -eo pipefail -v
 # pip uninstall -r requirements/requirements-ecosystem.txt -y
 # pip uninstall -r requirements/requirements-ml.txt -y
 # pip uninstall -r requirements/requirements-nlp.txt -y
-# pip install -r requirements/requirements.txt
+# pip install -r requirements/requirements.txt --quiet --find-links https://download.pytorch.org/whl/cpu/torch_stable.html --upgrade-strategy only-if-needed
 
 # ################################  pipeline 00  ################################
 # # checking catalyst-core loading (default)
@@ -57,8 +57,8 @@ set -eo pipefail -v
 #     raise AssertionError('\'ImportError\' expected')
 # """
 
-# pip install -r requirements/requirements-contrib.txt
-# pip install -r requirements/requirements-ecosystem.txt
+# pip install -r requirements/requirements-contrib.txt --quiet --find-links https://download.pytorch.org/whl/cpu/torch_stable.html --upgrade-strategy only-if-needed
+# pip install -r requirements/requirements-ecosystem.txt --quiet --find-links https://download.pytorch.org/whl/cpu/torch_stable.html --upgrade-strategy only-if-needed
 
 # python -c """
 # from catalyst.contrib.dl.callbacks import AlchemyLogger, VisdomLogger
@@ -67,53 +67,53 @@ set -eo pipefail -v
 
 # ################################  pipeline 02  ################################
 # # checking catalyst-cv dependencies loading
-# # cat <<EOT > .catalyst
-# # [catalyst]
-# # contrib_required = false
-# # cv_required = true
-# # ml_required = false
-# # nlp_required = false
-# # EOT
+# cat <<EOT > .catalyst
+# [catalyst]
+# contrib_required = false
+# cv_required = true
+# ml_required = false
+# nlp_required = false
+# EOT
 
-# # # check if fail if requirements not installed
-# # python -c """
-# # from catalyst.tools import settings
+# # check if fail if requirements not installed
+# python -c """
+# from catalyst.tools import settings
 
-# # assert settings.use_libjpeg_turbo == False
+# assert settings.use_libjpeg_turbo == False
 
-# # try:
-# #     from catalyst.contrib.data import cv as cv_data
-# #     from catalyst.contrib.dl.callbacks import InferMaskCallback
-# #     from catalyst.contrib.models import cv as cv_models
-# #     from catalyst.contrib.utils import imread, imwrite
-# #     from catalyst.data.__main__ import COMMANDS
+# try:
+#     from catalyst.contrib.data import cv as cv_data
+#     from catalyst.contrib.dl.callbacks import InferMaskCallback
+#     from catalyst.contrib.models import cv as cv_models
+#     from catalyst.contrib.utils import imread, imwrite
+#     from catalyst.data.__main__ import COMMANDS
 
-# #     assert not (
-# #         'process-images' in COMMANDS
-# #         or 'process-images' in COMMANDS
-# #         or 'project-embeddings' in COMMANDS
-# #     )
-# # except (ImportError, AssertionError):
-# #     pass  # Ok
-# # else:
-# #     raise AssertionError('\'ImportError\' or \'AssertionError\' expected')
-# # """
+#     assert not (
+#         'process-images' in COMMANDS
+#         or 'process-images' in COMMANDS
+#         or 'project-embeddings' in COMMANDS
+#     )
+# except (ImportError, AssertionError):
+#     pass  # Ok
+# else:
+#     raise AssertionError('\'ImportError\' or \'AssertionError\' expected')
+# """
 
-# # pip install -r requirements/requirements-cv.txt
+# pip install -r requirements/requirements-cv.txt --quiet --find-links https://download.pytorch.org/whl/cpu/torch_stable.html --upgrade-strategy only-if-needed
 
-# # python -c """
-# # from catalyst.contrib.data import cv as cv_data
-# # from catalyst.contrib.dl.callbacks import InferMaskCallback
-# # from catalyst.contrib.models import cv as cv_models
-# # from catalyst.contrib.utils import imread, imwrite
-# # from catalyst.data.__main__ import COMMANDS
+# python -c """
+# from catalyst.contrib.data import cv as cv_data
+# from catalyst.contrib.dl.callbacks import InferMaskCallback
+# from catalyst.contrib.models import cv as cv_models
+# from catalyst.contrib.utils import imread, imwrite
+# from catalyst.data.__main__ import COMMANDS
 
-# # assert (
-# #     'process-images' in COMMANDS
-# #     and 'process-images' in COMMANDS
-# #     and 'project-embeddings' in COMMANDS
-# # )
-# # """
+# assert (
+#     'process-images' in COMMANDS
+#     and 'process-images' in COMMANDS
+#     and 'project-embeddings' in COMMANDS
+# )
+# """
 
 
 # ################################  pipeline 03  ################################
@@ -140,7 +140,7 @@ set -eo pipefail -v
 #     raise AssertionError('\'ImportError\' or \'AssertionError\' expected')
 # """
 
-# pip install -r requirements/requirements-ml.txt
+# pip install -r requirements/requirements-ml.txt --quiet --find-links https://download.pytorch.org/whl/cpu/torch_stable.html --upgrade-strategy only-if-needed
 
 # python -c """
 # from catalyst.contrib.__main__ import COMMANDS
@@ -175,7 +175,7 @@ set -eo pipefail -v
 #     raise AssertionError('\'ImportError\' or \'AssertionError\' expected')
 # """
 
-# pip install -r requirements/requirements-nlp.txt
+# pip install -r requirements/requirements-nlp.txt --quiet --find-links https://download.pytorch.org/whl/cpu/torch_stable.html --upgrade-strategy only-if-needed
 
 # python -c """
 # from catalyst.contrib.data import nlp as nlp_data
