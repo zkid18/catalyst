@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>catalyst.metrics._segmentation &mdash; Catalyst 21.06 documentation</title>
+  <title>catalyst.metrics._segmentation &mdash; Catalyst 21.03.2 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
               
               
                 <div class="version">
-                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.06</a>
+                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.03</a>
                 </div>
               
             
@@ -189,7 +189,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quickstart 101</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#minimal-examples">Minimal examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/migrating_from_other.html">Migrating from other libraries</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-a-pytorch-framework-for-accelerated-deep-learning-r-d-ad9621e4ca88?source=friends_link&amp;sk=885b4409aecab505db0a63b06f19dcef">Catalyst — Accelerated Deep Learning R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-101-accelerated-pytorch-bd766a556d92?source=friends_link&amp;sk=d3dd9b2b23500eca046361187b4619ff">Catalyst 101 — Accelerated PyTorch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-102-core-trinity-experiment-runner-and-callback-54adc384b57c?source=friends_link&amp;sk=2aff824412e2f653587a30cd853b030c">Catalyst 102 — Core Trinity</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -200,8 +201,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../core/runner.html">Runner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/engine.html">Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/callback.html">Callback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/metric.html">Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/logger.html">Logger</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
 <ul>
@@ -210,9 +209,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/dp.html">DataParallel training (cpu, single/multi-gpu)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/amp.html">Mixed precision training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/ddp.html">Distributed training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/engines.html">Engines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/multi_components.html">Multiple components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/multiple_keys.html">Multiple input and output keys</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/early_stopping.html">Early stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/checkpointing.html">Model checkpointing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/debugging.html">Model debugging</a></li>
@@ -221,6 +218,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/optuna.html">Optuna integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/finetuning.html">Finetuning (multistage runs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/config_api.html">Config API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contribution guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -234,12 +237,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../api/runners.html">Runners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/utils.html">Utilities</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contribution guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 
             
@@ -339,12 +336,6 @@
 <span class="sd">            Used for per-batch logging. default: True</span>
 <span class="sd">        prefix: metric prefix</span>
 <span class="sd">        suffix: metric suffix</span>
-
-<span class="sd">    Interface, please check out implementations for more details:</span>
-
-<span class="sd">        - :py:mod:`catalyst.metrics._segmentation.IOUMetric`</span>
-<span class="sd">        - :py:mod:`catalyst.metrics._segmentation.DiceMetric`</span>
-<span class="sd">        - :py:mod:`catalyst.metrics._segmentation.TrevskyMetric`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -420,11 +411,6 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s2">&quot;fp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fp_class</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">statistics</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="s2">&quot;fn&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fn_class</span>
 
-        <span class="c1"># need only one time</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checked_params</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameters</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_checked_params</span> <span class="o">=</span> <span class="kc">True</span>
-
         <span class="n">metrics_per_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_fn</span><span class="p">(</span><span class="n">tp</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">fn</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">metrics_per_class</span>
 
@@ -442,6 +428,10 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">metrics_per_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">targets</span><span class="p">)</span>
         <span class="n">macro_metric</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">metrics_per_class</span><span class="p">)</span>
+        <span class="c1"># need only one time</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_checked_params</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_check_parameters</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_checked_params</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">metrics</span> <span class="o">=</span> <span class="p">{</span>
             <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="n">value</span>
             <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">metrics_per_class</span><span class="p">)</span>
@@ -451,21 +441,23 @@
             <span class="n">weighted_metric</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">metrics_per_class</span><span class="p">):</span>
                 <span class="n">weighted_metric</span> <span class="o">+=</span> <span class="n">value</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-            <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/_weighted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weighted_metric</span>
+            <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/weighted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weighted_metric</span>
+        <span class="c1"># convert torch.Tensor to float</span>
+        <span class="c1"># metrics = {k: float(v) for k, v in metrics.items()}</span>
         <span class="k">return</span> <span class="n">metrics</span>
 
-    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">compute_key_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute metrics with accumulated statistics</span>
+<span class="sd">        Compute segmentation metric for all data and return results in key-value format</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            tuple of metrics: per_class, micro_metric, macro_metric, weighted_metric(None if</span>
-<span class="sd">                weights is None)</span>
+<span class="sd">             dict of metrics, including micro, macro and weighted (if weights were given) metrics</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">per_class</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">total_statistics</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">macro_metric</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">weighted_metric</span> <span class="o">=</span> <span class="mi">0</span>
+
         <span class="c1"># @TODO: ddp hotfix, could be done better</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_ddp</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">statistics</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -477,41 +469,28 @@
 
         <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">statistics</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">statistics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_fn</span><span class="p">(</span><span class="o">**</span><span class="n">statistics</span><span class="p">)</span>
-            <span class="n">per_class</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
             <span class="n">macro_metric</span> <span class="o">+=</span> <span class="n">value</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">weighted_metric</span> <span class="o">+=</span> <span class="n">value</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">class_idx</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">stats_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">statistics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">total_statistics</span><span class="p">[</span><span class="n">stats_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_statistics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stats_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span>
-
-        <span class="n">macro_metric</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statistics</span><span class="p">)</span>
-        <span class="n">micro_metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_fn</span><span class="p">(</span><span class="o">**</span><span class="n">total_statistics</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">weighted_metric</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">per_class</span><span class="p">,</span> <span class="n">micro_metric</span><span class="p">,</span> <span class="n">macro_metric</span><span class="p">,</span> <span class="n">weighted_metric</span>
-
-    <span class="k">def</span> <span class="nf">compute_key_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Compute segmentation metric for all data and return results in key-value format</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">             dict of metrics, including micro, macro and weighted (if weights were given) metrics</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">per_class</span><span class="p">,</span> <span class="n">micro_metric</span><span class="p">,</span> <span class="n">macro_metric</span><span class="p">,</span> <span class="n">weighted_metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
-
-        <span class="n">metrics</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">per_class</span><span class="p">):</span>
             <span class="n">metrics</span><span class="p">[</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">[</span><span class="n">class_idx</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
             <span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
-
-        <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/_micro&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">micro_metric</span>
+            <span class="k">for</span> <span class="n">stats_name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">statistics</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">total_statistics</span><span class="p">[</span><span class="n">stats_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">total_statistics</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stats_name</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">value</span>
+        <span class="n">macro_metric</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">statistics</span><span class="p">)</span>
+        <span class="n">micro_metric</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_fn</span><span class="p">(</span><span class="o">**</span><span class="n">total_statistics</span><span class="p">)</span>
+        <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/micro&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">micro_metric</span>
         <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_metric</span>
-        <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/_macro&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_metric</span>
+        <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/macro&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_metric</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/_weighted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weighted_metric</span>
-        <span class="k">return</span> <span class="n">metrics</span></div>
+            <span class="n">metrics</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">/weighted&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">weighted_metric</span>
+        <span class="c1"># convert torch.Tensor to float</span>
+        <span class="c1"># metrics = {k: float(v) for k, v in metrics.items()}</span>
+        <span class="k">return</span> <span class="n">metrics</span>
+
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;@TODO: Docs.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_key_value</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="IOUMetric"><a class="viewcode-back" href="../../../api/metrics.html#catalyst.metrics._segmentation.IOUMetric">[docs]</a><span class="k">class</span> <span class="nc">IOUMetric</span><span class="p">(</span><span class="n">RegionBasedMetric</span><span class="p">):</span>
@@ -530,95 +509,6 @@
 <span class="sd">            Used for per-batch logging. default: True</span>
 <span class="sd">        prefix: metric prefix</span>
 <span class="sd">        suffix: metric suffix</span>
-
-<span class="sd">    Examples:</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import torch</span>
-<span class="sd">        from catalyst import metrics</span>
-
-<span class="sd">        outputs = torch.tensor([[[[0.8, 0.1, 0], [0, 0.4, 0.3], [0, 0, 1]]]])</span>
-<span class="sd">        targets = torch.tensor([[[[1.0, 0, 0], [0, 1, 0], [1, 1, 0]]]])</span>
-<span class="sd">        metric = metrics.IOUMetric()</span>
-<span class="sd">        metric.reset()</span>
-
-<span class="sd">        metric.compute()</span>
-<span class="sd">        # per_class, micro, macro, weighted</span>
-<span class="sd">        # ([tensor(0.2222)], tensor(0.2222), tensor(0.2222), None)</span>
-
-<span class="sd">        metric.update_key_value(outputs, targets)</span>
-<span class="sd">        metric.compute_key_value()</span>
-<span class="sd">        # {</span>
-<span class="sd">        #     &#39;iou&#39;: tensor(0.2222),</span>
-<span class="sd">        #     &#39;iou/_macro&#39;: tensor(0.2222),</span>
-<span class="sd">        #     &#39;iou/_micro&#39;: tensor(0.2222),</span>
-<span class="sd">        #     &#39;iou/class_00&#39;: tensor(0.2222),</span>
-<span class="sd">        # }</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import os</span>
-<span class="sd">        import torch</span>
-<span class="sd">        from torch import nn</span>
-<span class="sd">        from torch.utils.data import DataLoader</span>
-<span class="sd">        from catalyst import dl</span>
-<span class="sd">        from catalyst.data import ToTensor</span>
-<span class="sd">        from catalyst.contrib.datasets import MNIST</span>
-<span class="sd">        from catalyst.contrib.nn import IoULoss</span>
-
-
-<span class="sd">        model = nn.Sequential(</span>
-<span class="sd">            nn.Conv2d(1, 1, 3, 1, 1), nn.ReLU(),</span>
-<span class="sd">            nn.Conv2d(1, 1, 3, 1, 1), nn.Sigmoid(),</span>
-<span class="sd">        )</span>
-<span class="sd">        criterion = IoULoss()</span>
-<span class="sd">        optimizer = torch.optim.Adam(model.parameters(), lr=0.02)</span>
-
-<span class="sd">        loaders = {</span>
-<span class="sd">            &quot;train&quot;: DataLoader(</span>
-<span class="sd">                MNIST(os.getcwd(), train=True, download=True, transform=ToTensor()),</span>
-<span class="sd">                batch_size=32</span>
-<span class="sd">            ),</span>
-<span class="sd">            &quot;valid&quot;: DataLoader(</span>
-<span class="sd">                MNIST(os.getcwd(), train=False, download=True, transform=ToTensor()),</span>
-<span class="sd">                batch_size=32</span>
-<span class="sd">            ),</span>
-<span class="sd">        }</span>
-
-<span class="sd">        class CustomRunner(dl.SupervisedRunner):</span>
-<span class="sd">            def handle_batch(self, batch):</span>
-<span class="sd">                x = batch[self._input_key]</span>
-<span class="sd">                x_noise = (x + torch.rand_like(x)).clamp_(0, 1)</span>
-<span class="sd">                x_ = self.model(x_noise)</span>
-<span class="sd">                self.batch = {self._input_key: x, self._output_key: x_, self._target_key: x}</span>
-
-<span class="sd">        runner = CustomRunner(</span>
-<span class="sd">            input_key=&quot;features&quot;, output_key=&quot;scores&quot;, target_key=&quot;targets&quot;, loss_key=&quot;loss&quot;</span>
-<span class="sd">        )</span>
-<span class="sd">        # model training</span>
-<span class="sd">        runner.train(</span>
-<span class="sd">            model=model,</span>
-<span class="sd">            criterion=criterion,</span>
-<span class="sd">            optimizer=optimizer,</span>
-<span class="sd">            loaders=loaders,</span>
-<span class="sd">            num_epochs=1,</span>
-<span class="sd">            callbacks=[</span>
-<span class="sd">                dl.IOUCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.DiceCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.TrevskyCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, alpha=0.2),</span>
-<span class="sd">            ],</span>
-<span class="sd">            logdir=&quot;./logdir&quot;,</span>
-<span class="sd">            valid_loader=&quot;valid&quot;,</span>
-<span class="sd">            valid_metric=&quot;loss&quot;,</span>
-<span class="sd">            minimize_valid_metric=True,</span>
-<span class="sd">            verbose=True,</span>
-<span class="sd">        )</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        Please follow the `minimal examples`_ sections for more use cases.</span>
-
-<span class="sd">        .. _`minimal examples`: https://github.com/catalyst-team/catalyst#minimal-examples</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -663,95 +553,6 @@
 <span class="sd">            Used for per-batch logging. default: True</span>
 <span class="sd">        prefix: metric prefix</span>
 <span class="sd">        suffix: metric suffix</span>
-
-<span class="sd">    Examples:</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import torch</span>
-<span class="sd">        from catalyst import metrics</span>
-
-<span class="sd">        outputs = torch.tensor([[[[0.8, 0.1, 0], [0, 0.4, 0.3], [0, 0, 1]]]])</span>
-<span class="sd">        targets = torch.tensor([[[[1.0, 0, 0], [0, 1, 0], [1, 1, 0]]]])</span>
-<span class="sd">        metric = metrics.DiceMetric()</span>
-<span class="sd">        metric.reset()</span>
-
-<span class="sd">        metric.compute()</span>
-<span class="sd">        # per_class, micro, macro, weighted</span>
-<span class="sd">        # ([tensor(0.3636)], tensor(0.3636), tensor(0.3636), None)</span>
-
-<span class="sd">        metric.update_key_value(outputs, targets)</span>
-<span class="sd">        metric.compute_key_value()</span>
-<span class="sd">        # {</span>
-<span class="sd">        #     &#39;dice&#39;: tensor(0.3636),</span>
-<span class="sd">        #     &#39;dice/_macro&#39;: tensor(0.3636),</span>
-<span class="sd">        #     &#39;dice/_micro&#39;: tensor(0.3636),</span>
-<span class="sd">        #     &#39;dice/class_00&#39;: tensor(0.3636),</span>
-<span class="sd">        # }</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import os</span>
-<span class="sd">        import torch</span>
-<span class="sd">        from torch import nn</span>
-<span class="sd">        from torch.utils.data import DataLoader</span>
-<span class="sd">        from catalyst import dl</span>
-<span class="sd">        from catalyst.data import ToTensor</span>
-<span class="sd">        from catalyst.contrib.datasets import MNIST</span>
-<span class="sd">        from catalyst.contrib.nn import IoULoss</span>
-
-
-<span class="sd">        model = nn.Sequential(</span>
-<span class="sd">            nn.Conv2d(1, 1, 3, 1, 1), nn.ReLU(),</span>
-<span class="sd">            nn.Conv2d(1, 1, 3, 1, 1), nn.Sigmoid(),</span>
-<span class="sd">        )</span>
-<span class="sd">        criterion = IoULoss()</span>
-<span class="sd">        optimizer = torch.optim.Adam(model.parameters(), lr=0.02)</span>
-
-<span class="sd">        loaders = {</span>
-<span class="sd">            &quot;train&quot;: DataLoader(</span>
-<span class="sd">                MNIST(os.getcwd(), train=True, download=True, transform=ToTensor()),</span>
-<span class="sd">                batch_size=32</span>
-<span class="sd">            ),</span>
-<span class="sd">            &quot;valid&quot;: DataLoader(</span>
-<span class="sd">                MNIST(os.getcwd(), train=False, download=True, transform=ToTensor()),</span>
-<span class="sd">                batch_size=32</span>
-<span class="sd">            ),</span>
-<span class="sd">        }</span>
-
-<span class="sd">        class CustomRunner(dl.SupervisedRunner):</span>
-<span class="sd">            def handle_batch(self, batch):</span>
-<span class="sd">                x = batch[self._input_key]</span>
-<span class="sd">                x_noise = (x + torch.rand_like(x)).clamp_(0, 1)</span>
-<span class="sd">                x_ = self.model(x_noise)</span>
-<span class="sd">                self.batch = {self._input_key: x, self._output_key: x_, self._target_key: x}</span>
-
-<span class="sd">        runner = CustomRunner(</span>
-<span class="sd">            input_key=&quot;features&quot;, output_key=&quot;scores&quot;, target_key=&quot;targets&quot;, loss_key=&quot;loss&quot;</span>
-<span class="sd">        )</span>
-<span class="sd">        # model training</span>
-<span class="sd">        runner.train(</span>
-<span class="sd">            model=model,</span>
-<span class="sd">            criterion=criterion,</span>
-<span class="sd">            optimizer=optimizer,</span>
-<span class="sd">            loaders=loaders,</span>
-<span class="sd">            num_epochs=1,</span>
-<span class="sd">            callbacks=[</span>
-<span class="sd">                dl.IOUCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.DiceCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.TrevskyCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, alpha=0.2),</span>
-<span class="sd">            ],</span>
-<span class="sd">            logdir=&quot;./logdir&quot;,</span>
-<span class="sd">            valid_loader=&quot;valid&quot;,</span>
-<span class="sd">            valid_metric=&quot;loss&quot;,</span>
-<span class="sd">            minimize_valid_metric=True,</span>
-<span class="sd">            verbose=True,</span>
-<span class="sd">        )</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        Please follow the `minimal examples`_ sections for more use cases.</span>
-
-<span class="sd">        .. _`minimal examples`: https://github.com/catalyst-team/catalyst#minimal-examples</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -800,95 +601,6 @@
 <span class="sd">            Used for per-batch logging. default: True</span>
 <span class="sd">        prefix: metric prefix</span>
 <span class="sd">        suffix: metric suffix</span>
-
-<span class="sd">    Examples:</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import torch</span>
-<span class="sd">        from catalyst import metrics</span>
-
-<span class="sd">        outputs = torch.tensor([[[[0.8, 0.1, 0], [0, 0.4, 0.3], [0, 0, 1]]]])</span>
-<span class="sd">        targets = torch.tensor([[[[1.0, 0, 0], [0, 1, 0], [1, 1, 0]]]])</span>
-<span class="sd">        metric = metrics.TrevskyMetric(alpha=0.2)</span>
-<span class="sd">        metric.reset()</span>
-
-<span class="sd">        metric.compute()</span>
-<span class="sd">        # per_class, micro, macro, weighted</span>
-<span class="sd">        # ([tensor(0.4167)], tensor(0.4167), tensor(0.4167), None)</span>
-
-<span class="sd">        metric.update_key_value(outputs, targets)</span>
-<span class="sd">        metric.compute_key_value()</span>
-<span class="sd">        # {</span>
-<span class="sd">        #     &#39;trevsky&#39;: tensor(0.4167),</span>
-<span class="sd">        #     &#39;trevsky/_macro&#39;: tensor(0.4167)</span>
-<span class="sd">        #     &#39;trevsky/_micro&#39;: tensor(0.4167),</span>
-<span class="sd">        #     &#39;trevsky/class_00&#39;: tensor(0.4167),</span>
-<span class="sd">        # }</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import os</span>
-<span class="sd">        import torch</span>
-<span class="sd">        from torch import nn</span>
-<span class="sd">        from torch.utils.data import DataLoader</span>
-<span class="sd">        from catalyst import dl</span>
-<span class="sd">        from catalyst.data import ToTensor</span>
-<span class="sd">        from catalyst.contrib.datasets import MNIST</span>
-<span class="sd">        from catalyst.contrib.nn import IoULoss</span>
-
-
-<span class="sd">        model = nn.Sequential(</span>
-<span class="sd">            nn.Conv2d(1, 1, 3, 1, 1), nn.ReLU(),</span>
-<span class="sd">            nn.Conv2d(1, 1, 3, 1, 1), nn.Sigmoid(),</span>
-<span class="sd">        )</span>
-<span class="sd">        criterion = IoULoss()</span>
-<span class="sd">        optimizer = torch.optim.Adam(model.parameters(), lr=0.02)</span>
-
-<span class="sd">        loaders = {</span>
-<span class="sd">            &quot;train&quot;: DataLoader(</span>
-<span class="sd">                MNIST(os.getcwd(), train=True, download=True, transform=ToTensor()),</span>
-<span class="sd">                batch_size=32</span>
-<span class="sd">            ),</span>
-<span class="sd">            &quot;valid&quot;: DataLoader(</span>
-<span class="sd">                MNIST(os.getcwd(), train=False, download=True, transform=ToTensor()),</span>
-<span class="sd">                batch_size=32</span>
-<span class="sd">            ),</span>
-<span class="sd">        }</span>
-
-<span class="sd">        class CustomRunner(dl.SupervisedRunner):</span>
-<span class="sd">            def handle_batch(self, batch):</span>
-<span class="sd">                x = batch[self._input_key]</span>
-<span class="sd">                x_noise = (x + torch.rand_like(x)).clamp_(0, 1)</span>
-<span class="sd">                x_ = self.model(x_noise)</span>
-<span class="sd">                self.batch = {self._input_key: x, self._output_key: x_, self._target_key: x}</span>
-
-<span class="sd">        runner = CustomRunner(</span>
-<span class="sd">            input_key=&quot;features&quot;, output_key=&quot;scores&quot;, target_key=&quot;targets&quot;, loss_key=&quot;loss&quot;</span>
-<span class="sd">        )</span>
-<span class="sd">        # model training</span>
-<span class="sd">        runner.train(</span>
-<span class="sd">            model=model,</span>
-<span class="sd">            criterion=criterion,</span>
-<span class="sd">            optimizer=optimizer,</span>
-<span class="sd">            loaders=loaders,</span>
-<span class="sd">            num_epochs=1,</span>
-<span class="sd">            callbacks=[</span>
-<span class="sd">                dl.IOUCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.DiceCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.TrevskyCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, alpha=0.2),</span>
-<span class="sd">            ],</span>
-<span class="sd">            logdir=&quot;./logdir&quot;,</span>
-<span class="sd">            valid_loader=&quot;valid&quot;,</span>
-<span class="sd">            valid_metric=&quot;loss&quot;,</span>
-<span class="sd">            minimize_valid_metric=True,</span>
-<span class="sd">            verbose=True,</span>
-<span class="sd">        )</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        Please follow the `minimal examples`_ sections for more use cases.</span>
-
-<span class="sd">        .. _`minimal examples`: https://github.com/catalyst-team/catalyst#minimal-examples</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>

@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>catalyst.metrics._map &mdash; Catalyst 21.06 documentation</title>
+  <title>catalyst.metrics._map &mdash; Catalyst 21.03.2 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
               
               
                 <div class="version">
-                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.06</a>
+                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.03</a>
                 </div>
               
             
@@ -189,7 +189,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quickstart 101</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#minimal-examples">Minimal examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/migrating_from_other.html">Migrating from other libraries</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-a-pytorch-framework-for-accelerated-deep-learning-r-d-ad9621e4ca88?source=friends_link&amp;sk=885b4409aecab505db0a63b06f19dcef">Catalyst — Accelerated Deep Learning R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-101-accelerated-pytorch-bd766a556d92?source=friends_link&amp;sk=d3dd9b2b23500eca046361187b4619ff">Catalyst 101 — Accelerated PyTorch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-102-core-trinity-experiment-runner-and-callback-54adc384b57c?source=friends_link&amp;sk=2aff824412e2f653587a30cd853b030c">Catalyst 102 — Core Trinity</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -200,8 +201,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../core/runner.html">Runner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/engine.html">Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/callback.html">Callback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/metric.html">Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/logger.html">Logger</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
 <ul>
@@ -210,9 +209,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/dp.html">DataParallel training (cpu, single/multi-gpu)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/amp.html">Mixed precision training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/ddp.html">Distributed training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/engines.html">Engines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/multi_components.html">Multiple components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/multiple_keys.html">Multiple input and output keys</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/early_stopping.html">Early stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/checkpointing.html">Model checkpointing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/debugging.html">Model debugging</a></li>
@@ -221,6 +218,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/optuna.html">Optuna integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/finetuning.html">Finetuning (multistage runs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/config_api.html">Config API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contribution guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -234,12 +237,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../api/runners.html">Runners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/utils.html">Utilities</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contribution guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 
             
@@ -323,7 +320,6 @@
 <span class="sd">    Calculates the Mean Average Precision (MAP) for RecSys.</span>
 <span class="sd">    The precision metric summarizes the fraction of relevant items</span>
 <span class="sd">    out of the whole the recommendation list.</span>
-<span class="sd">    Computes mean value of MAP and it&#39;s approximate std value</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        topk_args: list of `topk` for map@topk computing</span>
@@ -331,119 +327,7 @@
 <span class="sd">        prefix: metric prefix</span>
 <span class="sd">        suffix: metric suffix</span>
 
-<span class="sd">    Examples:</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import torch</span>
-<span class="sd">        from catalyst import metrics</span>
-
-<span class="sd">        outputs = torch.tensor([</span>
-<span class="sd">            [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],</span>
-<span class="sd">            [9, 8, 7, 6, 5, 4, 3, 2, 1, 0],</span>
-<span class="sd">        ])</span>
-<span class="sd">        targets = torch.tensor([</span>
-<span class="sd">            [1.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0],</span>
-<span class="sd">            [0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0],</span>
-<span class="sd">        ])</span>
-<span class="sd">        metric = metrics.MAPMetric(topk_args=[1, 3, 5, 10])</span>
-<span class="sd">        metric.reset()</span>
-
-<span class="sd">        metric.update(outputs, targets)</span>
-<span class="sd">        metric.compute()</span>
-<span class="sd">        # (</span>
-<span class="sd">        #     # mean for @01, @03, @05, @10</span>
-<span class="sd">        #     (0.5, 0.6666666865348816, 0.6416666507720947, 0.5325397253036499),</span>
-<span class="sd">        #     # std for @01, @03, @05, @10</span>
-<span class="sd">        #     (0.0, 0.0, 0.0, 0.0)</span>
-<span class="sd">        # )</span>
-
-<span class="sd">        metric.compute_key_value()</span>
-<span class="sd">        # {</span>
-<span class="sd">        #     &#39;map&#39;: 0.5,</span>
-<span class="sd">        #     &#39;map/std&#39;: 0.0,</span>
-<span class="sd">        #     &#39;map01&#39;: 0.5,</span>
-<span class="sd">        #     &#39;map01/std&#39;: 0.0,</span>
-<span class="sd">        #     &#39;map03&#39;: 0.6666666865348816,</span>
-<span class="sd">        #     &#39;map03/std&#39;: 0.0,</span>
-<span class="sd">        #     &#39;map05&#39;: 0.6416666507720947,</span>
-<span class="sd">        #     &#39;map05/std&#39;: 0.0,</span>
-<span class="sd">        #     &#39;map10&#39;: 0.5325397253036499,</span>
-<span class="sd">        #     &#39;map10/std&#39;: 0.0</span>
-<span class="sd">        # }</span>
-
-<span class="sd">        metric.reset()</span>
-<span class="sd">        metric(outputs, targets)</span>
-<span class="sd">        # (</span>
-<span class="sd">        #     # mean for @01, @03, @05, @10</span>
-<span class="sd">        #     (0.5, 0.6666666865348816, 0.6416666507720947, 0.5325397253036499),</span>
-<span class="sd">        #     # std for @01, @03, @05, @10</span>
-<span class="sd">        #     (0.0, 0.0, 0.0, 0.0)</span>
-<span class="sd">        # )</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import torch</span>
-<span class="sd">        from torch.utils.data import DataLoader, TensorDataset</span>
-<span class="sd">        from catalyst import dl</span>
-
-<span class="sd">        # sample data</span>
-<span class="sd">        num_users, num_features, num_items = int(1e4), int(1e1), 10</span>
-<span class="sd">        X = torch.rand(num_users, num_features)</span>
-<span class="sd">        y = (torch.rand(num_users, num_items) &gt; 0.5).to(torch.float32)</span>
-
-<span class="sd">        # pytorch loaders</span>
-<span class="sd">        dataset = TensorDataset(X, y)</span>
-<span class="sd">        loader = DataLoader(dataset, batch_size=32, num_workers=1)</span>
-<span class="sd">        loaders = {&quot;train&quot;: loader, &quot;valid&quot;: loader}</span>
-
-<span class="sd">        # model, criterion, optimizer, scheduler</span>
-<span class="sd">        model = torch.nn.Linear(num_features, num_items)</span>
-<span class="sd">        criterion = torch.nn.BCEWithLogitsLoss()</span>
-<span class="sd">        optimizer = torch.optim.Adam(model.parameters())</span>
-<span class="sd">        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [2])</span>
-
-<span class="sd">        # model training</span>
-<span class="sd">        runner = dl.SupervisedRunner(</span>
-<span class="sd">            input_key=&quot;features&quot;, output_key=&quot;logits&quot;, target_key=&quot;targets&quot;, loss_key=&quot;loss&quot;</span>
-<span class="sd">        )</span>
-<span class="sd">        runner.train(</span>
-<span class="sd">            model=model,</span>
-<span class="sd">            criterion=criterion,</span>
-<span class="sd">            optimizer=optimizer,</span>
-<span class="sd">            scheduler=scheduler,</span>
-<span class="sd">            loaders=loaders,</span>
-<span class="sd">            num_epochs=3,</span>
-<span class="sd">            verbose=True,</span>
-<span class="sd">            callbacks=[</span>
-<span class="sd">                dl.BatchTransformCallback(</span>
-<span class="sd">                    transform=torch.sigmoid,</span>
-<span class="sd">                    scope=&quot;on_batch_end&quot;,</span>
-<span class="sd">                    input_key=&quot;logits&quot;,</span>
-<span class="sd">                    output_key=&quot;scores&quot;</span>
-<span class="sd">                ),</span>
-<span class="sd">                dl.CriterionCallback(</span>
-<span class="sd">                    input_key=&quot;logits&quot;, target_key=&quot;targets&quot;, metric_key=&quot;loss&quot;</span>
-<span class="sd">                ),</span>
-<span class="sd">                dl.AUCCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.HitrateCallback(</span>
-<span class="sd">                    input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, topk_args=(1, 3, 5)</span>
-<span class="sd">                ),</span>
-<span class="sd">                dl.MRRCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, topk_args=(1, 3, 5)),</span>
-<span class="sd">                dl.MAPCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, topk_args=(1, 3, 5)),</span>
-<span class="sd">                dl.NDCGCallback(input_key=&quot;scores&quot;, target_key=&quot;targets&quot;, topk_args=(1, 3, 5)),</span>
-<span class="sd">                dl.OptimizerCallback(metric_key=&quot;loss&quot;),</span>
-<span class="sd">                dl.SchedulerCallback(),</span>
-<span class="sd">                dl.CheckpointCallback(</span>
-<span class="sd">                    logdir=&quot;./logs&quot;, loader_key=&quot;valid&quot;, metric_key=&quot;loss&quot;, minimize=True</span>
-<span class="sd">                ),</span>
-<span class="sd">            ]</span>
-<span class="sd">        )</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        Please follow the `minimal examples`_ sections for more use cases.</span>
-
-<span class="sd">        .. _`minimal examples`: https://github.com/catalyst-team/catalyst#minimal-examples</span>
+<span class="sd">    It computes mean value of map and it&#39;s approximate std value</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>

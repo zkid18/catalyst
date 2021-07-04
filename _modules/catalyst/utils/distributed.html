@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>catalyst.utils.distributed &mdash; Catalyst 21.06 documentation</title>
+  <title>catalyst.utils.distributed &mdash; Catalyst 21.03.2 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
               
               
                 <div class="version">
-                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.06</a>
+                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.03</a>
                 </div>
               
             
@@ -189,7 +189,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quickstart 101</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#minimal-examples">Minimal examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/migrating_from_other.html">Migrating from other libraries</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-a-pytorch-framework-for-accelerated-deep-learning-r-d-ad9621e4ca88?source=friends_link&amp;sk=885b4409aecab505db0a63b06f19dcef">Catalyst — Accelerated Deep Learning R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-101-accelerated-pytorch-bd766a556d92?source=friends_link&amp;sk=d3dd9b2b23500eca046361187b4619ff">Catalyst 101 — Accelerated PyTorch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-102-core-trinity-experiment-runner-and-callback-54adc384b57c?source=friends_link&amp;sk=2aff824412e2f653587a30cd853b030c">Catalyst 102 — Core Trinity</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -200,8 +201,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../core/runner.html">Runner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/engine.html">Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/callback.html">Callback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/metric.html">Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/logger.html">Logger</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
 <ul>
@@ -210,9 +209,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/dp.html">DataParallel training (cpu, single/multi-gpu)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/amp.html">Mixed precision training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/ddp.html">Distributed training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/engines.html">Engines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/multi_components.html">Multiple components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/multiple_keys.html">Multiple input and output keys</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/early_stopping.html">Early stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/checkpointing.html">Model checkpointing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/debugging.html">Model debugging</a></li>
@@ -221,6 +218,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/optuna.html">Optuna integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/finetuning.html">Finetuning (multistage runs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/config_api.html">Config API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contribution guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -234,12 +237,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../api/runners.html">Runners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/utils.html">Utilities</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contribution guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 
             
@@ -309,7 +306,7 @@
              <article itemprop="articleBody" id="catalyst-article" class="catalyst-article">
               
   <h1>Source code for catalyst.utils.distributed</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">List</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
@@ -319,6 +316,7 @@
 
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">import</span> <span class="nn">torch.distributed</span>
 <span class="kn">import</span> <span class="nn">torch.distributed</span> <span class="k">as</span> <span class="nn">dist</span>
 
 <span class="kn">from</span> <span class="nn">catalyst.settings</span> <span class="kn">import</span> <span class="n">SETTINGS</span>
@@ -326,7 +324,7 @@
 
 <span class="k">def</span> <span class="nf">_is_torch_distributed_initialized</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Checks if torch.distributed is available and initialized.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">dist</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">and</span> <span class="n">dist</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="ow">and</span> <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">is_initialized</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">_is_slurm_available</span><span class="p">():</span>
@@ -344,16 +342,6 @@
         <span class="kn">from</span> <span class="nn">apex.parallel</span> <span class="kn">import</span> <span class="n">DistributedDataParallel</span> <span class="k">as</span> <span class="n">apex_DDP</span>
 
         <span class="n">parallel_wrappers</span> <span class="o">=</span> <span class="n">parallel_wrappers</span> <span class="o">+</span> <span class="p">(</span><span class="n">apex_DDP</span><span class="p">,)</span>
-
-    <span class="k">if</span> <span class="n">SETTINGS</span><span class="o">.</span><span class="n">fairscale_required</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">fairscale.nn.data_parallel</span> <span class="kn">import</span> <span class="n">FullyShardedDataParallel</span><span class="p">,</span> <span class="n">ShardedDataParallel</span>
-
-        <span class="n">parallel_wrappers</span> <span class="o">=</span> <span class="n">parallel_wrappers</span> <span class="o">+</span> <span class="p">(</span><span class="n">ShardedDataParallel</span><span class="p">,</span> <span class="n">FullyShardedDataParallel</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">SETTINGS</span><span class="o">.</span><span class="n">deepspeed_required</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">deepspeed</span> <span class="kn">import</span> <span class="n">DeepSpeedEngine</span><span class="p">,</span> <span class="n">PipelineEngine</span>
-
-        <span class="n">parallel_wrappers</span> <span class="o">=</span> <span class="n">parallel_wrappers</span> <span class="o">+</span> <span class="p">(</span><span class="n">DeepSpeedEngine</span><span class="p">,</span> <span class="n">PipelineEngine</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">parallel_wrappers</span><span class="p">)</span>
 
@@ -383,7 +371,7 @@
 <span class="sd">        int: ``rank`` if torch.distributed is initialized, otherwise ``-1``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_is_torch_distributed_initialized</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">dist</span><span class="o">.</span><span class="n">get_rank</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">get_rank</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
 
@@ -527,44 +515,6 @@
     <span class="k">return</span> <span class="n">data_list</span></div>
 
 
-<div class="viewcode-block" id="ddp_reduce"><a class="viewcode-back" href="../../../api/utils.html#catalyst.utils.distributed.ddp_reduce">[docs]</a><span class="k">def</span> <span class="nf">ddp_reduce</span><span class="p">(</span><span class="n">tensor</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">world_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Syncs ``tensor`` over ``world_size`` in distributed mode.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        tensor: tensor to sync across the processes.</span>
-<span class="sd">        mode: tensor synchronization type, should be one of &#39;sum&#39;, &#39;mean&#39; or &#39;all&#39;.</span>
-<span class="sd">        world_size: world size</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        torch.Tensor with synchronized values.</span>
-
-<span class="sd">    Raises:</span>
-<span class="sd">        ValueError: if mode is out of ``sum``, ``mean``, ``all``.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;all&quot;</span><span class="p">}:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown sync_type &#39;</span><span class="si">{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;sum&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">sum_reduce</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;mean&quot;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">mean_reduce</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">world_size</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">all_gather</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span></div>
-
-
-<div class="viewcode-block" id="ddp_sync_run"><a class="viewcode-back" href="../../../api/utils.html#catalyst.utils.distributed.ddp_sync_run">[docs]</a><span class="k">def</span> <span class="nf">ddp_sync_run</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Runs function in a synchronous way: 0-rank first and all other processes after.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        function: callable function</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">rank</span> <span class="o">=</span> <span class="n">get_rank</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">rank</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">dist</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
-    <span class="n">function</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">dist</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span></div>
-
-
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;get_rank&quot;</span><span class="p">,</span>
     <span class="s2">&quot;get_distributed_params&quot;</span><span class="p">,</span>
@@ -572,8 +522,6 @@
     <span class="s2">&quot;sum_reduce&quot;</span><span class="p">,</span>
     <span class="s2">&quot;mean_reduce&quot;</span><span class="p">,</span>
     <span class="s2">&quot;all_gather&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ddp_reduce&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;ddp_sync_run&quot;</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
 

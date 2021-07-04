@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilities &mdash; Catalyst 21.06 documentation</title>
+  <title>Utilities &mdash; Catalyst 21.03.2 documentation</title>
   
 
   
@@ -156,7 +156,7 @@
               
               
                 <div class="version">
-                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.06</a>
+                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.03</a>
                 </div>
               
             
@@ -190,7 +190,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart 101</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#minimal-examples">Minimal examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/migrating_from_other.html">Migrating from other libraries</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-a-pytorch-framework-for-accelerated-deep-learning-r-d-ad9621e4ca88?source=friends_link&amp;sk=885b4409aecab505db0a63b06f19dcef">Catalyst — Accelerated Deep Learning R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-101-accelerated-pytorch-bd766a556d92?source=friends_link&amp;sk=d3dd9b2b23500eca046361187b4619ff">Catalyst 101 — Accelerated PyTorch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-102-core-trinity-experiment-runner-and-callback-54adc384b57c?source=friends_link&amp;sk=2aff824412e2f653587a30cd853b030c">Catalyst 102 — Core Trinity</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -201,8 +202,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../core/runner.html">Runner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/engine.html">Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../core/callback.html">Callback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../core/metric.html">Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../core/logger.html">Logger</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
 <ul>
@@ -211,9 +210,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../faq/dp.html">DataParallel training (cpu, single/multi-gpu)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/amp.html">Mixed precision training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/ddp.html">Distributed training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq/engines.html">Engines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/multi_components.html">Multiple components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq/multiple_keys.html">Multiple input and output keys</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/early_stopping.html">Early stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/checkpointing.html">Model checkpointing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/debugging.html">Model debugging</a></li>
@@ -222,6 +219,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../faq/optuna.html">Optuna integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/finetuning.html">Finetuning (multistage runs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq/config_api.html">Config API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contribution guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul class="current">
@@ -235,12 +238,6 @@
 <li class="toctree-l1"><a class="reference internal" href="runners.html">Runners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Utilities</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contribution guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 
             
@@ -454,7 +451,7 @@ will be smaller. (default: <code class="docutils literal notranslate"><span clas
 
 <dl class="function">
 <dt id="catalyst.utils.data.get_loaders_from_params">
-<code class="sig-prename descclassname">catalyst.utils.data.</code><code class="sig-name descname">get_loaders_from_params</code><span class="sig-paren">(</span><em class="sig-param">batch_size: int = 1</em>, <em class="sig-param">num_workers: int = 0</em>, <em class="sig-param">drop_last: bool = False</em>, <em class="sig-param">per_gpu_scaling: bool = False</em>, <em class="sig-param">loaders_params: Dict[str</em>, <em class="sig-param">Any] = None</em>, <em class="sig-param">samplers: OrderedDict[str</em>, <em class="sig-param">Sampler] = None</em>, <em class="sig-param">datasets: OrderedDict[str</em>, <em class="sig-param">Union[Dataset</em>, <em class="sig-param">dict]] = None</em>, <em class="sig-param">initial_seed: int = 42</em><span class="sig-paren">)</span> &#x2192; OrderedDict[str, DataLoader]<a class="reference internal" href="../_modules/catalyst/utils/data.html#get_loaders_from_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.utils.data.get_loaders_from_params" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">catalyst.utils.data.</code><code class="sig-name descname">get_loaders_from_params</code><span class="sig-paren">(</span><em class="sig-param">batch_size: int = 1</em>, <em class="sig-param">num_workers: int = 0</em>, <em class="sig-param">drop_last: bool = False</em>, <em class="sig-param">per_gpu_scaling: bool = False</em>, <em class="sig-param">loaders_params: Dict[str</em>, <em class="sig-param">Any] = None</em>, <em class="sig-param">samplers_params: Dict[str</em>, <em class="sig-param">Any] = None</em>, <em class="sig-param">initial_seed: int = 42</em>, <em class="sig-param">datasets_fn: Callable = None</em>, <em class="sig-param">**data_params</em><span class="sig-paren">)</span> &#x2192; OrderedDict[str, DataLoader]<a class="reference internal" href="../_modules/catalyst/utils/data.html#get_loaders_from_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.utils.data.get_loaders_from_params" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates pytorch dataloaders from datasets and additional parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -467,11 +464,15 @@ from <code class="docutils literal notranslate"><span class="pre">torch.utils.da
 from <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code></p></li>
 <li><p><strong>per_gpu_scaling</strong> – boolean flag,
 if <code class="docutils literal notranslate"><span class="pre">True</span></code>, scales batch_size in proportion to the number of GPUs</p></li>
-<li><p><strong>loaders_params</strong> – additional loaders parameters</p></li>
-<li><p><strong>samplers</strong> – additional sampler parameters</p></li>
+<li><p><strong>loaders_params</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – additional loaders parameters</p></li>
+<li><p><strong>samplers_params</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – additional sampler parameters</p></li>
 <li><p><strong>initial_seed</strong> – initial seed for <code class="docutils literal notranslate"><span class="pre">torch.utils.data.DataLoader</span></code>
 workers</p></li>
-<li><p><strong>datasets</strong> – ordered dictionary with <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Dataset</span></code></p></li>
+<li><p><strong>datasets_fn</strong> (<em>Callable</em>) – callable function to get dictionary with
+<code class="docutils literal notranslate"><span class="pre">torch.utils.data.Datasets</span></code></p></li>
+<li><p><strong>**data_params</strong> – additional data parameters
+or dictionary with <code class="docutils literal notranslate"><span class="pre">torch.utils.data.Datasets</span></code> to use for
+pytorch dataloaders creation</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -486,7 +487,7 @@ workers</p></li>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>NotImplementedError</strong> – if datasource is out of <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> or dict</p></li>
+<li><p><strong>NotImplementedError</strong> – if datasource is out of <cite>Dataset</cite> or dict</p></li>
 <li><p><strong>ValueError</strong> – if batch_sampler option is mutually
     exclusive with distributed</p></li>
 </ul>
@@ -584,38 +585,6 @@ Source: <a class="reference external" href="https://github.com/facebookresearch/
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>list of data gathered from each process.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="catalyst.utils.distributed.ddp_reduce">
-<code class="sig-prename descclassname">catalyst.utils.distributed.</code><code class="sig-name descname">ddp_reduce</code><span class="sig-paren">(</span><em class="sig-param">tensor: torch.Tensor</em>, <em class="sig-param">mode: str</em>, <em class="sig-param">world_size: int</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/catalyst/utils/distributed.html#ddp_reduce"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.utils.distributed.ddp_reduce" title="Permalink to this definition">¶</a></dt>
-<dd><p>Syncs <code class="docutils literal notranslate"><span class="pre">tensor</span></code> over <code class="docutils literal notranslate"><span class="pre">world_size</span></code> in distributed mode.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>tensor</strong> – tensor to sync across the processes.</p></li>
-<li><p><strong>mode</strong> – tensor synchronization type, should be one of ‘sum’, ‘mean’ or ‘all’.</p></li>
-<li><p><strong>world_size</strong> – world size</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>torch.Tensor with synchronized values.</p>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><strong>ValueError</strong> – if mode is out of <code class="docutils literal notranslate"><span class="pre">sum</span></code>, <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code>.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="catalyst.utils.distributed.ddp_sync_run">
-<code class="sig-prename descclassname">catalyst.utils.distributed.</code><code class="sig-name descname">ddp_sync_run</code><span class="sig-paren">(</span><em class="sig-param">function: Callable</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/catalyst/utils/distributed.html#ddp_sync_run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.utils.distributed.ddp_sync_run" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runs function in a synchronous way: 0-rank first and all other processes after.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>function</strong> – callable function</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1409,7 +1378,7 @@ default is 0</p></li>
 
 <dl class="function">
 <dt id="catalyst.utils.torch.any2device">
-<code class="sig-prename descclassname">catalyst.utils.torch.</code><code class="sig-name descname">any2device</code><span class="sig-paren">(</span><em class="sig-param">value: Union[Dict, List, Tuple, numpy.ndarray, torch.Tensor, torch.nn.modules.module.Module], device: Union[str, torch.device]</em><span class="sig-paren">)</span> &#x2192; Union[Dict, List, Tuple, torch.Tensor, torch.nn.modules.module.Module]<a class="reference internal" href="../_modules/catalyst/utils/torch.html#any2device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.utils.torch.any2device" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">catalyst.utils.torch.</code><code class="sig-name descname">any2device</code><span class="sig-paren">(</span><em class="sig-param">value, device: Union[str, torch.device]</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/catalyst/utils/torch.html#any2device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.utils.torch.any2device" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move tensor, list of tensors, list of list of tensors,
 dict of tensors, tuple of tensors to target device.</p>
 <dl class="field-list simple">
@@ -2335,7 +2304,7 @@ using this as the class labels.</p>
 
 <dl class="function">
 <dt id="catalyst.contrib.utils.parallel.tqdm_parallel_imap">
-<code class="sig-prename descclassname">catalyst.contrib.utils.parallel.</code><code class="sig-name descname">tqdm_parallel_imap</code><span class="sig-paren">(</span><em class="sig-param">func, args, pool: Union[multiprocessing.pool.Pool, catalyst.contrib.utils.parallel.DumbPool], total: int = None, pbar=&lt;class 'tqdm.std.tqdm'&gt;</em><span class="sig-paren">)</span> &#x2192; List[T]<a class="reference internal" href="../_modules/catalyst/contrib/utils/parallel.html#tqdm_parallel_imap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.contrib.utils.parallel.tqdm_parallel_imap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">catalyst.contrib.utils.parallel.</code><code class="sig-name descname">tqdm_parallel_imap</code><span class="sig-paren">(</span><em class="sig-param">func, args, pool: Union[multiprocessing.pool.Pool, catalyst.contrib.utils.parallel.DumbPool], total: int = None, pbar=&lt;class 'tqdm.asyncio.tqdm_asyncio'&gt;</em><span class="sig-paren">)</span> &#x2192; List[T]<a class="reference internal" href="../_modules/catalyst/contrib/utils/parallel.html#tqdm_parallel_imap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#catalyst.contrib.utils.parallel.tqdm_parallel_imap" title="Permalink to this definition">¶</a></dt>
 <dd><p>&#64;TODO: Docs. Contribution is welcome.</p>
 </dd></dl>
 

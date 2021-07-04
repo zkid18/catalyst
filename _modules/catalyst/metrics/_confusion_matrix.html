@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>catalyst.metrics._confusion_matrix &mdash; Catalyst 21.06 documentation</title>
+  <title>catalyst.metrics._confusion_matrix &mdash; Catalyst 21.03.2 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
               
               
                 <div class="version">
-                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.06</a>
+                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.03</a>
                 </div>
               
             
@@ -189,7 +189,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quickstart 101</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#minimal-examples">Minimal examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/migrating_from_other.html">Migrating from other libraries</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-a-pytorch-framework-for-accelerated-deep-learning-r-d-ad9621e4ca88?source=friends_link&amp;sk=885b4409aecab505db0a63b06f19dcef">Catalyst — Accelerated Deep Learning R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-101-accelerated-pytorch-bd766a556d92?source=friends_link&amp;sk=d3dd9b2b23500eca046361187b4619ff">Catalyst 101 — Accelerated PyTorch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-102-core-trinity-experiment-runner-and-callback-54adc384b57c?source=friends_link&amp;sk=2aff824412e2f653587a30cd853b030c">Catalyst 102 — Core Trinity</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -200,8 +201,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../core/runner.html">Runner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/engine.html">Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/callback.html">Callback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/metric.html">Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/logger.html">Logger</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
 <ul>
@@ -210,9 +209,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/dp.html">DataParallel training (cpu, single/multi-gpu)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/amp.html">Mixed precision training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/ddp.html">Distributed training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/engines.html">Engines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/multi_components.html">Multiple components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/multiple_keys.html">Multiple input and output keys</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/early_stopping.html">Early stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/checkpointing.html">Model checkpointing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/debugging.html">Model debugging</a></li>
@@ -221,6 +218,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/optuna.html">Optuna integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/finetuning.html">Finetuning (multistage runs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/config_api.html">Config API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contribution guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -234,12 +237,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../api/runners.html">Runners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/utils.html">Utilities</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contribution guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 
             
@@ -326,65 +323,6 @@
 <span class="sd">        normalized: determines whether or not the confusion matrix is normalized or not</span>
 <span class="sd">        compute_on_call: Boolean flag to computes and return confusion matrix during __call__.</span>
 <span class="sd">            default: True</span>
-
-<span class="sd">    Examples:</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import torch</span>
-<span class="sd">        from torch.utils.data import DataLoader, TensorDataset</span>
-<span class="sd">        from catalyst import dl</span>
-
-<span class="sd">        # sample data</span>
-<span class="sd">        num_samples, num_features, num_classes = int(1e4), int(1e1), 4</span>
-<span class="sd">        X = torch.rand(num_samples, num_features)</span>
-<span class="sd">        y = (torch.rand(num_samples,) * num_classes).to(torch.int64)</span>
-
-<span class="sd">        # pytorch loaders</span>
-<span class="sd">        dataset = TensorDataset(X, y)</span>
-<span class="sd">        loader = DataLoader(dataset, batch_size=32, num_workers=1)</span>
-<span class="sd">        loaders = {&quot;train&quot;: loader, &quot;valid&quot;: loader}</span>
-
-<span class="sd">        # model, criterion, optimizer, scheduler</span>
-<span class="sd">        model = torch.nn.Linear(num_features, num_classes)</span>
-<span class="sd">        criterion = torch.nn.CrossEntropyLoss()</span>
-<span class="sd">        optimizer = torch.optim.Adam(model.parameters())</span>
-<span class="sd">        scheduler = torch.optim.lr_scheduler.MultiStepLR(optimizer, [2])</span>
-
-<span class="sd">        # model training</span>
-<span class="sd">        runner = dl.SupervisedRunner(</span>
-<span class="sd">            input_key=&quot;features&quot;, output_key=&quot;logits&quot;, target_key=&quot;targets&quot;, loss_key=&quot;loss&quot;</span>
-<span class="sd">        )</span>
-<span class="sd">        runner.train(</span>
-<span class="sd">            model=model,</span>
-<span class="sd">            criterion=criterion,</span>
-<span class="sd">            optimizer=optimizer,</span>
-<span class="sd">            scheduler=scheduler,</span>
-<span class="sd">            loaders=loaders,</span>
-<span class="sd">            logdir=&quot;./logdir&quot;,</span>
-<span class="sd">            num_epochs=3,</span>
-<span class="sd">            valid_loader=&quot;valid&quot;,</span>
-<span class="sd">            valid_metric=&quot;accuracy03&quot;,</span>
-<span class="sd">            minimize_valid_metric=False,</span>
-<span class="sd">            verbose=True,</span>
-<span class="sd">            callbacks=[</span>
-<span class="sd">                dl.AccuracyCallback(</span>
-<span class="sd">                    input_key=&quot;logits&quot;, target_key=&quot;targets&quot;, num_classes=num_classes</span>
-<span class="sd">                ),</span>
-<span class="sd">                dl.PrecisionRecallF1SupportCallback(</span>
-<span class="sd">                    input_key=&quot;logits&quot;, target_key=&quot;targets&quot;, num_classes=num_classes</span>
-<span class="sd">                ),</span>
-<span class="sd">                dl.AUCCallback(input_key=&quot;logits&quot;, target_key=&quot;targets&quot;),</span>
-<span class="sd">                dl.ConfusionMatrixCallback(</span>
-<span class="sd">                    input_key=&quot;logits&quot;, target_key=&quot;targets&quot;, num_classes=num_classes</span>
-<span class="sd">                ),</span>
-<span class="sd">            ],</span>
-<span class="sd">        )</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        Please follow the `minimal examples`_ sections for more use cases.</span>
-
-<span class="sd">        .. _`minimal examples`: https://github.com/catalyst-team/catalyst#minimal-examples</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">normalized</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">compute_on_call</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>

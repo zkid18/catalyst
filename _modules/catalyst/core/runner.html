@@ -9,7 +9,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>catalyst.core.runner &mdash; Catalyst 21.06 documentation</title>
+  <title>catalyst.core.runner &mdash; Catalyst 21.03.2 documentation</title>
   
 
   
@@ -155,7 +155,7 @@
               
               
                 <div class="version">
-                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.06</a>
+                  <a href="https://catalyst-team.github.io/catalyst/versions.html">21.03</a>
                 </div>
               
             
@@ -189,7 +189,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/quickstart.html">Quickstart 101</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#minimal-examples">Minimal examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/migrating_from_other.html">Migrating from other libraries</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-a-pytorch-framework-for-accelerated-deep-learning-r-d-ad9621e4ca88?source=friends_link&amp;sk=885b4409aecab505db0a63b06f19dcef">Catalyst — Accelerated Deep Learning R&amp;D</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-101-accelerated-pytorch-bd766a556d92?source=friends_link&amp;sk=d3dd9b2b23500eca046361187b4619ff">Catalyst 101 — Accelerated PyTorch</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://medium.com/pytorch/catalyst-102-core-trinity-experiment-runner-and-callback-54adc384b57c?source=friends_link&amp;sk=2aff824412e2f653587a30cd853b030c">Catalyst 102 — Core Trinity</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -200,8 +201,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../core/runner.html">Runner</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/engine.html">Engine</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../core/callback.html">Callback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/metric.html">Metric</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../core/logger.html">Logger</a></li>
 </ul>
 <p class="caption"><span class="caption-text">FAQ</span></p>
 <ul>
@@ -210,9 +209,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/dp.html">DataParallel training (cpu, single/multi-gpu)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/amp.html">Mixed precision training</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/ddp.html">Distributed training</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/engines.html">Engines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/multi_components.html">Multiple components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../faq/multiple_keys.html">Multiple input and output keys</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/early_stopping.html">Early stopping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/checkpointing.html">Model checkpointing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/debugging.html">Model debugging</a></li>
@@ -221,6 +218,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/optuna.html">Optuna integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/finetuning.html">Finetuning (multistage runs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../faq/config_api.html">Config API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Contribution guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API</span></p>
 <ul>
@@ -234,12 +237,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../api/runners.html">Runners</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/tools.html">Tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api/utils.html">Utilities</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Contribution guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst/blob/master/CONTRIBUTING.md">How to start</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/codestyle">Codestyle</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/catalyst-team/catalyst#acknowledgments">Acknowledgments</a></li>
 </ul>
 
             
@@ -325,6 +322,7 @@
 <span class="kn">from</span> <span class="nn">catalyst.core.logger</span> <span class="kn">import</span> <span class="n">ILogger</span>
 <span class="kn">from</span> <span class="nn">catalyst.core.misc</span> <span class="kn">import</span> <span class="n">filter_callbacks_by_node</span><span class="p">,</span> <span class="n">sort_callbacks_by_order</span><span class="p">,</span> <span class="n">validate_loaders</span>
 <span class="kn">from</span> <span class="nn">catalyst.core.trial</span> <span class="kn">import</span> <span class="n">ITrial</span>
+<span class="kn">from</span> <span class="nn">catalyst.engines.torch</span> <span class="kn">import</span> <span class="n">DistributedDataParallelEngine</span>
 <span class="kn">from</span> <span class="nn">catalyst.typing</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Criterion</span><span class="p">,</span>
     <span class="n">Device</span><span class="p">,</span>
@@ -334,10 +332,8 @@
     <span class="n">RunnerModel</span><span class="p">,</span>
     <span class="n">RunnerOptimizer</span><span class="p">,</span>
     <span class="n">RunnerScheduler</span><span class="p">,</span>
-    <span class="n">Sampler</span><span class="p">,</span>
     <span class="n">Scheduler</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">catalyst.utils.distributed</span> <span class="kn">import</span> <span class="n">ddp_sync_run</span>
 <span class="kn">from</span> <span class="nn">catalyst.utils.misc</span> <span class="kn">import</span> <span class="n">maybe_recursive_call</span><span class="p">,</span> <span class="n">set_global_seed</span>
 
 <span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
@@ -364,18 +360,9 @@
 <span class="sd">    An abstraction that contains all the logic of how to run the experiment,</span>
 <span class="sd">    stages, epochs, loaders and batches.</span>
 
-<span class="sd">    IRunner supports the logic for deep learning pipeline configuration with pure python code.</span>
-<span class="sd">    Please check the examples for intuition.</span>
-
 <span class="sd">    Args:</span>
 <span class="sd">        model: Torch model object</span>
 <span class="sd">        engine: IEngine instance</span>
-
-<span class="sd">    Abstraction, please check out implementations for more details:</span>
-
-<span class="sd">        - :py:mod:`catalyst.runners.runner.Runner`</span>
-<span class="sd">        - :py:mod:`catalyst.runners.config.ConfigRunner`</span>
-<span class="sd">        - :py:mod:`catalyst.runners.hydra.HydraRunner`</span>
 
 <span class="sd">    .. note::</span>
 <span class="sd">        To learn more about Catalyst Core concepts, please check out</span>
@@ -383,121 +370,6 @@
 <span class="sd">            - :py:mod:`catalyst.core.runner.IRunner`</span>
 <span class="sd">            - :py:mod:`catalyst.core.engine.IEngine`</span>
 <span class="sd">            - :py:mod:`catalyst.core.callback.Callback`</span>
-
-<span class="sd">    .. note::</span>
-<span class="sd">        Please follow the `minimal examples`_ sections for use cases.</span>
-
-<span class="sd">        .. _`minimal examples`: https://github.com/catalyst-team/catalyst#minimal-examples</span>
-
-<span class="sd">    Examples:</span>
-
-<span class="sd">    .. code-block:: python</span>
-
-<span class="sd">        import os</span>
-<span class="sd">        from torch import nn, optim</span>
-<span class="sd">        from torch.utils.data import DataLoader</span>
-<span class="sd">        from catalyst import dl, utils</span>
-<span class="sd">        from catalyst.contrib.datasets import MNIST</span>
-<span class="sd">        from catalyst.data import ToTensor</span>
-
-
-<span class="sd">        class CustomRunner(dl.IRunner):</span>
-<span class="sd">            def __init__(self, logdir, device):</span>
-<span class="sd">                super().__init__()</span>
-<span class="sd">                self._logdir = logdir</span>
-<span class="sd">                self._device = device</span>
-
-<span class="sd">            def get_engine(self):</span>
-<span class="sd">                return dl.DeviceEngine(self._device)</span>
-
-<span class="sd">            def get_loggers(self):</span>
-<span class="sd">                return {</span>
-<span class="sd">                    &quot;console&quot;: dl.ConsoleLogger(),</span>
-<span class="sd">                    &quot;csv&quot;: dl.CSVLogger(logdir=self._logdir),</span>
-<span class="sd">                    &quot;tensorboard&quot;: dl.TensorboardLogger(logdir=self._logdir),</span>
-<span class="sd">                }</span>
-
-<span class="sd">            @property</span>
-<span class="sd">            def stages(self):</span>
-<span class="sd">                return [&quot;train_freezed&quot;, &quot;train_unfreezed&quot;]</span>
-
-<span class="sd">            def get_stage_len(self, stage: str) -&gt; int:</span>
-<span class="sd">                return 3</span>
-
-<span class="sd">            def get_loaders(self, stage: str):</span>
-<span class="sd">                loaders = {</span>
-<span class="sd">                    &quot;train&quot;: DataLoader(</span>
-<span class="sd">                        MNIST(os.getcwd(), train=True, download=True, transform=ToTensor()),</span>
-<span class="sd">                        batch_size=32</span>
-<span class="sd">                    ),</span>
-<span class="sd">                    &quot;valid&quot;: DataLoader(</span>
-<span class="sd">                        MNIST(os.getcwd(), train=False, download=True, transform=ToTensor()),</span>
-<span class="sd">                        batch_size=32</span>
-<span class="sd">                    ),</span>
-<span class="sd">                }</span>
-<span class="sd">                return loaders</span>
-
-<span class="sd">            def get_model(self, stage: str):</span>
-<span class="sd">                model = (</span>
-<span class="sd">                    self.model</span>
-<span class="sd">                    if self.model is not None</span>
-<span class="sd">                    else nn.Sequential(</span>
-<span class="sd">                        nn.Flatten(), nn.Linear(784, 128), nn.ReLU(), nn.Linear(128, 10)</span>
-<span class="sd">                    )</span>
-<span class="sd">                )</span>
-<span class="sd">                if stage == &quot;train_freezed&quot;:</span>
-<span class="sd">                    # freeze layer</span>
-<span class="sd">                    utils.set_requires_grad(model[1], False)</span>
-<span class="sd">                else:</span>
-<span class="sd">                    utils.set_requires_grad(model, True)</span>
-<span class="sd">                return model</span>
-
-<span class="sd">            def get_criterion(self, stage: str):</span>
-<span class="sd">                return nn.CrossEntropyLoss()</span>
-
-<span class="sd">            def get_optimizer(self, stage: str, model):</span>
-<span class="sd">                if stage == &quot;train_freezed&quot;:</span>
-<span class="sd">                    return optim.Adam(model.parameters(), lr=1e-3)</span>
-<span class="sd">                else:</span>
-<span class="sd">                    return optim.SGD(model.parameters(), lr=1e-1)</span>
-
-<span class="sd">            def get_scheduler(self, stage: str, optimizer):</span>
-<span class="sd">                return None</span>
-
-<span class="sd">            def get_callbacks(self, stage: str):</span>
-<span class="sd">                return {</span>
-<span class="sd">                    &quot;criterion&quot;: dl.CriterionCallback(</span>
-<span class="sd">                        metric_key=&quot;loss&quot;, input_key=&quot;logits&quot;, target_key=&quot;targets&quot;</span>
-<span class="sd">                    ),</span>
-<span class="sd">                    &quot;optimizer&quot;: dl.OptimizerCallback(metric_key=&quot;loss&quot;),</span>
-<span class="sd">                    &quot;accuracy&quot;: dl.AccuracyCallback(</span>
-<span class="sd">                        input_key=&quot;logits&quot;, target_key=&quot;targets&quot;, topk_args=(1, 3, 5)</span>
-<span class="sd">                    ),</span>
-<span class="sd">                    &quot;classification&quot;: dl.PrecisionRecallF1SupportCallback(</span>
-<span class="sd">                        input_key=&quot;logits&quot;, target_key=&quot;targets&quot;, num_classes=10</span>
-<span class="sd">                    ),</span>
-<span class="sd">                    &quot;checkpoint&quot;: dl.CheckpointCallback(</span>
-<span class="sd">                        self._logdir,</span>
-<span class="sd">                        loader_key=&quot;valid&quot;,</span>
-<span class="sd">                        metric_key=&quot;loss&quot;,</span>
-<span class="sd">                        minimize=True,</span>
-<span class="sd">                        save_n_best=3,</span>
-<span class="sd">                    ),</span>
-<span class="sd">                }</span>
-
-<span class="sd">            def handle_batch(self, batch):</span>
-<span class="sd">                x, y = batch</span>
-<span class="sd">                logits = self.model(x)</span>
-
-<span class="sd">                self.batch = {</span>
-<span class="sd">                    &quot;features&quot;: x,</span>
-<span class="sd">                    &quot;targets&quot;: y,</span>
-<span class="sd">                    &quot;logits&quot;: logits,</span>
-<span class="sd">                }</span>
-
-<span class="sd">        runner = CustomRunner(&quot;./logs&quot;, &quot;cpu&quot;)</span>
-<span class="sd">        runner.run()</span>
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
@@ -559,8 +431,6 @@
         <span class="c1"># extra</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">exception</span><span class="p">:</span> <span class="ne">Exception</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">need_early_stop</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stage_rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stage_world_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
     <span class="c1"># @TODO: remove hotfix</span>
     <span class="nd">@property</span>
@@ -597,28 +467,6 @@
 <span class="sd">            dictionary with hyperparameters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{}</span>
-
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">_log_defaults</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="c1"># experiment info</span>
-            <span class="s2">&quot;run_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_key</span><span class="p">,</span>
-            <span class="s2">&quot;global_sample_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_sample_step</span><span class="p">,</span>
-            <span class="s2">&quot;global_batch_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_batch_step</span><span class="p">,</span>
-            <span class="s2">&quot;global_epoch_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">global_epoch_step</span><span class="p">,</span>
-            <span class="c1"># stage info</span>
-            <span class="s2">&quot;stage_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">,</span>
-            <span class="s2">&quot;stage_epoch_len&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_len</span><span class="p">,</span>
-            <span class="s2">&quot;stage_epoch_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_step</span><span class="p">,</span>
-            <span class="s2">&quot;stage_batch_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_batch_step</span><span class="p">,</span>
-            <span class="s2">&quot;stage_sample_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_sample_step</span><span class="p">,</span>
-            <span class="c1"># loader info</span>
-            <span class="s2">&quot;loader_key&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_key</span><span class="p">,</span>
-            <span class="s2">&quot;loader_batch_len&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_len</span><span class="p">,</span>
-            <span class="s2">&quot;loader_sample_len&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_len</span><span class="p">,</span>
-            <span class="s2">&quot;loader_batch_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_step</span><span class="p">,</span>
-            <span class="s2">&quot;loader_sample_step&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_step</span><span class="p">,</span>
-        <span class="p">}</span>
 
     <span class="nd">@property</span>
     <span class="nd">@abstractmethod</span>
@@ -695,19 +543,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
-    <span class="k">def</span> <span class="nf">get_samplers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;OrderedDict[str, Sampler]&quot;</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Returns samplers for a given stage.  # noqa: DAR401</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            stage: stage name of interest, like &quot;pretrain&quot; / &quot;train&quot; / &quot;finetune&quot; / etc</span>
-
-<span class="sd">        Returns:  # noqa: DAR201, DAR202</span>
-<span class="sd">            OrderedDict[str, Sampler]: Ordered dictionary</span>
-<span class="sd">                with samplers for current stage and epoch.</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
-
+    <span class="c1"># def get_samplers(self, stage: str = None):</span>
+    <span class="c1">#     raise NotImplementedError</span>
+    <span class="c1">#</span>
     <span class="c1"># def get_transforms(self, stage: str = None):</span>
     <span class="c1">#     &quot;&quot;&quot;Returns the data transforms for a given stage and dataset.</span>
     <span class="c1">#</span>
@@ -832,16 +670,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_criterion</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">criterion</span>
 
-    <span class="k">def</span> <span class="nf">_get_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">Model</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optimizer</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
-        <span class="c1"># assert self.model is not None, &quot;You need to setup model first&quot;</span>
+    <span class="k">def</span> <span class="nf">_get_optimizer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optimizer</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;You need to setup model first&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_optimizer</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span>
 
-    <span class="k">def</span> <span class="nf">_get_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">:</span> <span class="n">Optimizer</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scheduler</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">optimizer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optimizer</span>
+    <span class="k">def</span> <span class="nf">_get_scheduler</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Scheduler</span><span class="p">:</span>
         <span class="c1"># assert self.optimizer is not None, &quot;You need to setup optimizer first&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_scheduler</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">scheduler</span>
@@ -858,6 +692,56 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{}</span></div>
 
+<div class="viewcode-block" id="IRunner.log_metrics"><a class="viewcode-back" href="../../../api/core.html#catalyst.core.runner.IRunner.log_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">log_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Logs batch, loader and epoch metrics to available loggers.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">log_metrics</span><span class="p">(</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="c1"># experiment info</span>
+                <span class="n">run_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">run_key</span><span class="p">,</span>
+                <span class="n">global_sample_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_sample_step</span><span class="p">,</span>
+                <span class="n">global_batch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_batch_step</span><span class="p">,</span>
+                <span class="n">global_epoch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_epoch_step</span><span class="p">,</span>
+                <span class="c1"># stage info</span>
+                <span class="n">stage_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">,</span>
+                <span class="n">stage_epoch_len</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_len</span><span class="p">,</span>
+                <span class="n">stage_epoch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_step</span><span class="p">,</span>
+                <span class="n">stage_batch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_batch_step</span><span class="p">,</span>
+                <span class="n">stage_sample_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_sample_step</span><span class="p">,</span>
+                <span class="c1"># loader info</span>
+                <span class="n">loader_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_key</span><span class="p">,</span>
+                <span class="n">loader_batch_len</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_len</span><span class="p">,</span>
+                <span class="n">loader_sample_len</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_len</span><span class="p">,</span>
+                <span class="n">loader_batch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_step</span><span class="p">,</span>
+                <span class="n">loader_sample_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_step</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="IRunner.log_image"><a class="viewcode-back" href="../../../api/core.html#catalyst.core.runner.IRunner.log_image">[docs]</a>    <span class="k">def</span> <span class="nf">log_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Logs image to available loggers.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">log_image</span><span class="p">(</span>
+                <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+                <span class="c1"># experiment info</span>
+                <span class="n">run_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">run_key</span><span class="p">,</span>
+                <span class="n">global_sample_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_sample_step</span><span class="p">,</span>
+                <span class="n">global_batch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_batch_step</span><span class="p">,</span>
+                <span class="n">global_epoch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">global_epoch_step</span><span class="p">,</span>
+                <span class="c1"># stage info</span>
+                <span class="n">stage_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">,</span>
+                <span class="n">stage_epoch_len</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_len</span><span class="p">,</span>
+                <span class="n">stage_epoch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_step</span><span class="p">,</span>
+                <span class="n">stage_batch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_batch_step</span><span class="p">,</span>
+                <span class="n">stage_sample_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_sample_step</span><span class="p">,</span>
+                <span class="c1"># loader info</span>
+                <span class="n">loader_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_key</span><span class="p">,</span>
+                <span class="n">loader_batch_len</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_len</span><span class="p">,</span>
+                <span class="n">loader_sample_len</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_len</span><span class="p">,</span>
+                <span class="n">loader_batch_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_step</span><span class="p">,</span>
+                <span class="n">loader_sample_step</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_step</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
 <div class="viewcode-block" id="IRunner.log_hparams"><a class="viewcode-back" href="../../../api/core.html#catalyst.core.runner.IRunner.log_hparams">[docs]</a>    <span class="k">def</span> <span class="nf">log_hparams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Logs hyperparameters to available loggers.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -868,21 +752,6 @@
                 <span class="n">run_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">run_key</span><span class="p">,</span>
                 <span class="n">stage_key</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span><span class="p">,</span>
             <span class="p">)</span></div>
-
-<div class="viewcode-block" id="IRunner.log_metrics"><a class="viewcode-back" href="../../../api/core.html#catalyst.core.runner.IRunner.log_metrics">[docs]</a>    <span class="k">def</span> <span class="nf">log_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Logs batch, loader and epoch metrics to available loggers.&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">log_metrics</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_defaults</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="IRunner.log_image"><a class="viewcode-back" href="../../../api/core.html#catalyst.core.runner.IRunner.log_image">[docs]</a>    <span class="k">def</span> <span class="nf">log_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Logs image to available loggers.&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">log_image</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_defaults</span><span class="p">)</span></div>
-
-    <span class="k">def</span> <span class="nf">log_artifact</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="sd">&quot;&quot;&quot;Logs artifact (file like audio, video, csv, etc.) to available loggers.&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">logger</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">log_artifact</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_log_defaults</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">flush_log</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Flushes the loggers.&quot;&quot;&quot;</span>
@@ -938,14 +807,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stage_batch_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stage_sample_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">is_ddp</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">setup_process</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_stage_rank</span><span class="p">,</span> <span class="n">world_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_stage_world_size</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">is_master_process</span><span class="p">:</span>
-                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span> <span class="o">=</span> <span class="p">{}</span>
-
-        <span class="n">ddp_sync_run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_setup_loaders</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_loaders</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_setup_components</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_setup_callbacks</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_hparams</span><span class="p">(</span><span class="n">hparams</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hparams</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s2">&quot;stage&quot;</span><span class="p">)</span>
@@ -995,13 +857,12 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
-        <span class="c1"># we have an batch per each worker...</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">global_batch_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stage_batch_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">global_sample_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">stage_sample_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_batch_step</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage_batch_step</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader_batch_step</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">global_sample_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage_sample_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loader_sample_step</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">batch_metrics</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">on_batch_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">:</span> <span class="s2">&quot;IRunner&quot;</span><span class="p">):</span>
@@ -1009,11 +870,10 @@
         <span class="c1"># as far as we could `backward` anything from `batch_metrics` on the nodes during training,</span>
         <span class="c1"># they could not be synced before, so we have to sync them in the end of the batch</span>
         <span class="c1"># @TODO: could be done better</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">is_ddp</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">batch_metrics</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">k</span><span class="p">:</span> <span class="n">runner</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">sync_tensor</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">runner</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="s2">&quot;mean&quot;</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-            <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_metrics</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">k</span><span class="p">:</span> <span class="n">runner</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">sync_tensor</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">runner</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="s2">&quot;mean&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_metrics</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">log_metrics</span><span class="p">(</span><span class="n">metrics</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_metrics</span><span class="p">,</span> <span class="n">scope</span><span class="o">=</span><span class="s2">&quot;batch&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">on_loader_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">:</span> <span class="s2">&quot;IRunner&quot;</span><span class="p">):</span>
@@ -1030,22 +890,10 @@
 
     <span class="k">def</span> <span class="nf">on_stage_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">:</span> <span class="s2">&quot;IRunner&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Event handler.&quot;&quot;&quot;</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">callbacks</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">loaders</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">deinit_components</span><span class="p">(</span><span class="n">runner</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-
-        <span class="c1"># due to multiprocessing setup we have to close current loggers</span>
-        <span class="c1"># to prevent EOF-like errors</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">is_ddp</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">flush_log</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">close_log</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">cleanup_process</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">deinit_components</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">on_experiment_end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">:</span> <span class="s2">&quot;IRunner&quot;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Event handler.&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">flush_log</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close_log</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">on_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">runner</span><span class="p">:</span> <span class="s2">&quot;IRunner&quot;</span><span class="p">):</span>
@@ -1067,14 +915,14 @@
 <span class="sd">        Used to make a train/valid/infer stage during Experiment run.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            batch (Mapping[str, Any]): dictionary with data batches from DataLoader.</span>
+<span class="sd">            batch (Mapping[str, Any]): dictionary with data batches</span>
+<span class="sd">                from DataLoader.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
     <span class="k">def</span> <span class="nf">_run_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_event</span><span class="p">(</span><span class="s2">&quot;on_batch_start&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">handle_batch</span><span class="p">(</span><span class="n">batch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">batch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">sync_device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_event</span><span class="p">(</span><span class="s2">&quot;on_batch_end&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_run_loader</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1098,7 +946,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_event</span><span class="p">(</span><span class="s2">&quot;on_epoch_end&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_run_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">world_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stage_rank</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stage_world_size</span> <span class="o">=</span> <span class="n">rank</span><span class="p">,</span> <span class="n">world_size</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="n">DistributedDataParallelEngine</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">setup_process</span><span class="p">(</span><span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">,</span> <span class="n">world_size</span><span class="o">=</span><span class="n">world_size</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">is_master_process</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">loggers</span> <span class="o">=</span> <span class="p">{}</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_event</span><span class="p">(</span><span class="s2">&quot;on_stage_start&quot;</span><span class="p">)</span>
         <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_step</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_epoch_len</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_run_epoch</span><span class="p">()</span>
@@ -1110,7 +962,7 @@
     <span class="k">def</span> <span class="nf">_run_experiment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_run_event</span><span class="p">(</span><span class="s2">&quot;on_experiment_start&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">stages</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">is_ddp</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">,</span> <span class="n">DistributedDataParallelEngine</span><span class="p">):</span>
                 <span class="c1"># ddp-device branch</span>
                 <span class="n">world_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="o">.</span><span class="n">world_size</span>
                 <span class="n">torch</span><span class="o">.</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span>
